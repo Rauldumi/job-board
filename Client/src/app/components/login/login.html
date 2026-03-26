@@ -1,0 +1,17 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <input formControlName="email" placeholder="Email">
+    @if(loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
+        <p>Email invalid.</p>
+    }
+
+    <input formControlName="parola" placeholder="Parola" type="password">
+    @if(loginForm.get('parola')?.touched && loginForm.get('parola')?.invalid) {
+        <p>Parola invalida.</p>
+    }
+
+    <button type="submit" [disabled]="loginForm.invalid">Log In</button>
+
+    @if(eroare) {
+        <p>{{ eroare }}.</p>
+    }    
+</form>
