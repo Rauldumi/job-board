@@ -12,6 +12,10 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+  register(user: User) {
+    return this.http.post<User>(`${this.apiUrl}/users`, user)
+  }
+
   login(credentials: LoginCredentials) {
     return this.http.get<User[]>(`${this.apiUrl}/users`).pipe(
       map(users => users.find(u => u.email === credentials.email && u.parola === credentials.parola))

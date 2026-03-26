@@ -1,8 +1,28 @@
 {
-    "users": [
-        {"id": 1, "nume": "Raul Dumitras", "email": "raul@test.com", "parola": "1234", "rol": "angajator"},
-        {"id": 2, "nume": "Ion Popescu", "email": "ion@test.com", "parola": 1234, "rol": "candidat"}
-    ],
-    "joburi": [],
-    "aplicatii": []
+  "users": [
+    {
+      "id": "1",
+      "nume": "Raul Dumitras",
+      "email": "raul@test.com",
+      "parola": "1234",
+      "rol": "angajator"
+    },
+    {
+      "id": "2",
+      "nume": "Ion Popescu",
+      "email": "ion@test.com",
+      "parola": 1234,
+      "rol": "candidat"
+    },
+    {
+      "nume": "Raul",
+      "email": "rauldumitras75@gmail.com",
+      "parola": "parola1",
+      "rol": "angajator",
+      "id": "Ja9xIsqwecU"
+    }
+  ],
+  "joburi": [],
+  "aplicatii": [],
+  "$schema": "./node_modules/json-server/schema.json"
 }

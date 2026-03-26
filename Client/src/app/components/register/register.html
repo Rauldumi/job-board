@@ -1,0 +1,28 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <input formControlName="nume" placeholder="Nume">
+    @if(registerForm.get('nume')?.touched && registerForm.get('nume')?.invalid) {
+        <p>Numele trebuie sa aiba minim 3 caractere.</p>
+    }
+
+    <input formControlName="email" placeholder="email">
+    @if(registerForm.get('email')?.touched && registerForm.get('email')?.invalid) {
+        <p>Email-ul este obligatoriu.</p>
+    }
+
+    <input formControlName="parola" type="password" placeholder="Parola">
+    @if(registerForm.get('parola')?.invalid && registerForm.get('parola')?.touched) {
+        <p>Parola trebuie sa aiba minim 6 caractere.</p>
+    }
+
+    <select formControlName="rol">
+        <option value="">-- Alegeti Optiunea --</option>
+        <option value="angajator">Angajator</option>
+        <option value="candidat">Candidat</option>
+    </select>
+    @if(registerForm.get('rol')?.touched && registerForm.get('rol')?.invalid) {
+        <p>Alegerea rolului este obligatoriu.</p>
+    }
+
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+
+</form>
