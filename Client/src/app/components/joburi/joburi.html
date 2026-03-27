@@ -1,6 +1,8 @@
 @for(job of joburi; track job.id) {
-    <li>{{ job.titlu }}</li>
-    <li>{{ job.descriere }}</li>
-    <li>{{ job.companie }}</li>
-    <li>{{ job.dataPostarii }}</li>
+    <a [routerLink]="['/joburi', job.id]">
+        <li>{{ job.titlu }}</li>
+        <li>{{ job.descriere }}</li>
+        <li>{{ job.companie }}</li>
+        <li>{{ job.dataPostarii }}</li>
+    </a>
 }

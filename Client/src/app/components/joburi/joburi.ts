@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { JoburiService } from '../../services/joburi';
-import { Route, Router } from '@angular/router';
+import { Route, Router, RouterLink } from '@angular/router';
 import { Job } from '../../models/job.model';
 
 @Component({
   selector: 'app-joburi',
-  imports: [],
+  imports: [RouterLink,],
   templateUrl: './joburi.html',
   styleUrl: './joburi.css',
 })

@@ -16,4 +16,8 @@ export class JoburiService {
       map(joburi => joburi.filter(j => j.esteActiv))
     );
   }
+
+  getJobById(id: number) {
+    return this.http.get<Job>(`${this.apiUrl}/joburi/${id}`)
+  }
 }
