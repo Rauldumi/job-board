@@ -1,4 +1,4 @@
-@if(job) {
+@if(job$ | async; as job) {
    <div>
         <h1>{{ job?.titlu }}</h1>
         <p>{{ job?.companie }}</p>
