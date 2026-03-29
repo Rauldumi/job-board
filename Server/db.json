@@ -24,7 +24,7 @@
   ],
   "joburi": [
     {
-      "id": 1,
+      "id": "1",
       "titlu": "Junior Frontend Developer",
       "descriere": "Cautam un Frontend Developer in Angular fara experienta.",
       "companie": "CargoTrack",
@@ -33,15 +33,23 @@
       "angajatorId": 1
     },
     {
-    "id": 2,
-    "titlu": "Backend Developer",
-    "descriere": "Cautam un developer PHP cu experienta.",
-    "companie": "Softlead",
-    "dataPostarii": "2026-03-26",
-    "esteActiv": true,
-    "angajatorId": 1
-  }
+      "id": "2",
+      "titlu": "Backend Developer",
+      "descriere": "Cautam un developer PHP cu experienta.",
+      "companie": "Softlead",
+      "dataPostarii": "2026-03-26",
+      "esteActiv": true,
+      "angajatorId": 1
+    }
   ],
-  "aplicatii": [],
+  "aplicatii": [
+    {
+      "jobId": 1,
+      "userId": "1",
+      "data": "2026-03-29T13:58:03.049Z",
+      "status": "pending",
+      "id": "Qreeh22VllM"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
