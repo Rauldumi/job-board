@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { JoburiService } from '../../services/joburi';
 import { ActivatedRoute } from '@angular/router';
 import { Job } from '../../models/job.model';
@@ -17,6 +17,8 @@ import { AuthService } from '../../services/auth';
 export class JobDetails implements OnInit{
   job$!: Observable<Job>;
   jobId!: number;
+  aplicatReusit = signal(false);
+  aplicatEsuat = signal(false);
 
   constructor(
     private joburiService: JoburiService, 
@@ -35,8 +37,13 @@ export class JobDetails implements OnInit{
       status: "pending" as const,
     };
 
-    this.aplicatiiService.aplica(aplicatie).subscribe();
+    this.aplicatiiService.aplica(aplicatie).subscribe({
+      next: () => this.aplicatReusit.set(true),
+      error: () => this.aplicatEsuat.set(true),
+    });
   }
+
+
 
   ngOnInit() {
     this.jobId = +this.route.snapshot.paramMap.get('id')!;
