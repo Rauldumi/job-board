@@ -17,4 +17,8 @@ export class AplicatiiService {
   verificareAplicare(jobId: string, userId: string) {
     return this.http.get<Aplicatii[]>(`${this.apiUrl}/aplicatii?jobId=${jobId}&userId=${userId}`);
   }
+
+  getAplicatiiByUserId(userId: string) {
+    return this.http.get<Aplicatii[]>(`${this.apiUrl}/aplicatii?userId=${userId}`)
+  }
 }

@@ -1,0 +1,8 @@
+@for(job of joburi; track job.id) {
+    <a [routerLink]="['/istoric', job.id]">
+        <li> {{job.titlu}} </li>
+        <li> {{job.descriere}} </li>
+        <li> {{job.companie}} </li>
+        <li> {{ job.dataPostarii}} </li>
+    </a>
+}
