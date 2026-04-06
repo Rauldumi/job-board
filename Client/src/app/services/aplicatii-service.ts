@@ -13,4 +13,8 @@ export class AplicatiiService {
   aplica(values: Omit<Aplicatii, 'id'>) {
     return this.http.post<Aplicatii>(`${this.apiUrl}/aplicatii`, values);
   }
+
+  verificareAplicare(jobId: string, userId: string) {
+    return this.http.get<Aplicatii[]>(`${this.apiUrl}/aplicatii?jobId=${jobId}&userId=${userId}`);
+  }
 }

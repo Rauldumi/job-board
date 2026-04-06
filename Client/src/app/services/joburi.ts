@@ -17,7 +17,7 @@ export class JoburiService {
     );
   }
 
-  getJobById(id: number) {
+  getJobById(id: string) {
     return this.http.get<Job>(`${this.apiUrl}/joburi/${id}`)
   }
 }

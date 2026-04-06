@@ -1,7 +1,7 @@
 export interface Aplicatii {
-    id: number,
-    jobId: number,
-    userId: number,
+    id: string,
+    jobId: string,
+    userId: string,
     data: string,
     status: "pending" | "applied" | "rejected"
 }
