@@ -4,7 +4,9 @@
         <p>{{ job?.companie }}</p>
         <p>{{ job?.descriere }}</p>
         <p>{{ job?.dataPostarii }}</p>
-        <button (click)="aplicaJob()">Aplică</button>
+        @if(tipDeUser === 'candidat') {
+            <button (click)="aplicaJob()">Aplică</button>
+        }
     </div> 
 }
 

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { AplicatiiService } from '../../services/aplicatii-service';
 import { AuthService } from '../../services/auth';
+import { User } from '../../models/user.model';
 
 
 @Component({
@@ -17,6 +18,7 @@ import { AuthService } from '../../services/auth';
 export class JobDetails implements OnInit{
   job$!: Observable<Job>;
   jobId!: string;
+  tipDeUser: string = '';
   aplicatReusit = signal(false);
   aplicatEsuat = signal(false);
   aplicatDeja = signal(false);
@@ -59,5 +61,6 @@ export class JobDetails implements OnInit{
   ngOnInit() {
     this.jobId = this.route.snapshot.paramMap.get('id')!;
     this.job$ = this.joburiService.getJobById(this.jobId);
+    this.tipDeUser = this.authService.getUserLogat()?.rol;
   }
 }

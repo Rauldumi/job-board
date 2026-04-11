@@ -6,12 +6,13 @@ import { authGuard } from './auth-guard';
 import { JobDetails } from './components/job-details/job-details';
 import { JobHistory } from './components/job-history/job-history';
 import { AngajatorDashboard } from './components/angajator-dashboard/angajator-dashboard';
+import { roleGuardGuard } from './role-guard-guard';
 
 export const routes: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'login', component: LoginComponent},
     {path: 'joburi', component: Joburi, canActivate:[authGuard]},
     {path: 'joburi/:id' , component: JobDetails, canActivate:[authGuard]},
-    {path: 'istoric', component: JobHistory, canActivate:[authGuard]},
-    {path: 'dashboard', component: AngajatorDashboard}
+    {path: 'istoric', component: JobHistory, canActivate:[authGuard, roleGuardGuard], data: {rol: 'candidat'}},
+    {path: 'dashboard', component: AngajatorDashboard, canActivate:[authGuard, roleGuardGuard], data: {rol: 'angajator'}}
 ];
