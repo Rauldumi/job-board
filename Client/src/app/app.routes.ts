@@ -5,6 +5,7 @@ import { RegisterComponent } from './components/register/register';
 import { authGuard } from './auth-guard';
 import { JobDetails } from './components/job-details/job-details';
 import { JobHistory } from './components/job-history/job-history';
+import { AngajatorDashboard } from './components/angajator-dashboard/angajator-dashboard';
 
 export const routes: Routes = [
     {path: 'register', component: RegisterComponent},
@@ -12,4 +13,5 @@ export const routes: Routes = [
     {path: 'joburi', component: Joburi, canActivate:[authGuard]},
     {path: 'joburi/:id' , component: JobDetails, canActivate:[authGuard]},
     {path: 'istoric', component: JobHistory, canActivate:[authGuard]},
+    {path: 'dashboard', component: AngajatorDashboard}
 ];

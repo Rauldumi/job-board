@@ -1,0 +1,55 @@
+<div>
+    @for (job of joburi(); track job.id) {
+        <li>{{job.titlu}}</li>
+        <li>{{job.descriere}}</li>
+        <li>{{job.companie}}</li>
+        <li>{{job.dataPostarii}}</li>
+        <button (click)="jobDeEditat.set(job.id); jobEditat = {titlu: job.titlu, descriere: job.descriere, companie: job.companie, dataPostarii: job.dataPostarii}">Edit</button>
+            @if(jobDeEditat() === job.id) {
+                <input [(ngModel)]="jobEditat.titlu">
+                <input [(ngModel)]="jobEditat.descriere">
+                <input [(ngModel)]="jobEditat.companie">
+                <input [(ngModel)]="jobEditat.dataPostarii">
+                <button (click)="editeazaJob()">Salveaza</button>
+            }
+        <button (click)="stergeJob(job.id)">Delete</button>
+    }
+    <button (click)="arataFormular.set(true)">+</button>
+</div>
+
+
+@if(arataFormular()) {
+    <form [formGroup]="jobForm" (ngSubmit)="creeazaJob()">
+        <input formControlName="titlu" placeholder="Titlu">
+        @if(jobForm.get('titlu')?.touched && jobForm.get('titlu')?.invalid) {
+            <p>Completarea titlului este obligatorie.</p>
+        }
+
+        <input formControlName="descriere" placeholder="Descriere">
+        @if(jobForm.get('descriere')?.touched && jobForm.get('descriere')?.invalid) {
+            <p>Completarea descrierii este obligatorie</p>
+        }
+
+        <input formControlName="companie" placeholder="Companie">
+        @if(jobForm.get('companie')?.touched && jobForm.get('companie')?.invalid) {
+            <p>Completarea unei companii este obligatorie</p>
+        }
+
+        <input formControlName="dataPostarii" placeholder="Data Postarii">
+        @if(jobForm.get('dataPostarii')?.touched && jobForm.get('dataPostarii')?.invalid) {
+            <p>Completarea datii este necesara.</p>
+        }
+
+        <input type="checkbox" formControlName="esteActiv" placeholder="Setati disponibilitatea">
+        @if(jobForm.get('esteActiv')?.touched && jobForm.get('esteActiv')?.invalid) {
+            <p>Completarea disponibilitatii este necesara.</p>
+        }
+
+        <button type="submit" [disabled]="jobForm.invalid">Adauga</button>
+        
+        @if(eroare) {
+            <p>{{ eroare }}</p>
+        }
+    </form>
+
+}

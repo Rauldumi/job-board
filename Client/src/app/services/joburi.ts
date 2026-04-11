@@ -20,4 +20,16 @@ export class JoburiService {
   getJobById(id: string) {
     return this.http.get<Job>(`${this.apiUrl}/joburi/${id}`)
   }
+
+  updateJob(id: string, changes: Partial<Job>) {
+    return this.http.patch<Job>(`${this.apiUrl}/joburi/${id}`, changes)
+  }
+
+  createJob(job: Omit<Job, 'id'>) {
+    return this.http.post<Job>(`${this.apiUrl}/joburi`, job)
+  }
+
+  deleteJob(id:string) {
+    return this.http.delete<Job>(`${this.apiUrl}/joburi/${id}`)
+  }
 }
