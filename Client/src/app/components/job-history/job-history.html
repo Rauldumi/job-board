@@ -1,8 +1,18 @@
-@for(job of joburi; track job.id) {
-    <a [routerLink]="['/istoric', job.id]">
-        <li> {{job.titlu}} </li>
-        <li> {{job.descriere}} </li>
-        <li> {{job.companie}} </li>
-        <li> {{ job.dataPostarii}} </li>
-    </a>
-}
+<div class="job-list">
+    @for(job of joburi; track job.id) {
+        <mat-card [routerLink]="['/istoric', job.id]">
+            <mat-card-header>
+                <mat-card-title>{{ job.titlu }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                {{ job.companie }}
+            </mat-card-content>
+            <mat-card-content>
+                {{ job.descriere }}
+            </mat-card-content>
+            <mat-card-content>
+                {{ job.dataPostarii }}
+            </mat-card-content>
+        </mat-card>
+    }
+</div>

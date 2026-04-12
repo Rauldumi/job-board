@@ -7,11 +7,13 @@ import { AsyncPipe } from '@angular/common';
 import { AplicatiiService } from '../../services/aplicatii-service';
 import { AuthService } from '../../services/auth';
 import { User } from '../../models/user.model';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
   selector: 'app-job-details',
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, MatCardModule, MatButtonModule],
   templateUrl: './job-details.html',
   styleUrl: './job-details.css',
 })

@@ -1,55 +1,107 @@
-<div>
-    @for (job of joburi(); track job.id) {
-        <li>{{job.titlu}}</li>
-        <li>{{job.descriere}}</li>
-        <li>{{job.companie}}</li>
-        <li>{{job.dataPostarii}}</li>
-        <button (click)="jobDeEditat.set(job.id); jobEditat = {titlu: job.titlu, descriere: job.descriere, companie: job.companie, dataPostarii: job.dataPostarii}">Edit</button>
-            @if(jobDeEditat() === job.id) {
-                <input [(ngModel)]="jobEditat.titlu">
-                <input [(ngModel)]="jobEditat.descriere">
-                <input [(ngModel)]="jobEditat.companie">
-                <input [(ngModel)]="jobEditat.dataPostarii">
-                <button (click)="editeazaJob()">Salveaza</button>
-            }
-        <button (click)="stergeJob(job.id)">Delete</button>
-    }
-    <button (click)="arataFormular.set(true)">+</button>
-</div>
+<table mat-table [dataSource]="joburi()">
 
+    <ng-container matColumnDef="titlu">
+        <th mat-header-cell *matHeaderCellDef>Titlu</th>
+        <td mat-cell *matCellDef="let job">{{ job.titlu }}</td>
+    </ng-container>
 
-@if(arataFormular()) {
-    <form [formGroup]="jobForm" (ngSubmit)="creeazaJob()">
-        <input formControlName="titlu" placeholder="Titlu">
-        @if(jobForm.get('titlu')?.touched && jobForm.get('titlu')?.invalid) {
-            <p>Completarea titlului este obligatorie.</p>
-        }
+    <ng-container matColumnDef="companie">
+        <th mat-header-cell *matHeaderCellDef>Companie</th>
+        <td mat-cell *matCellDef="let job">{{ job.companie }}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="dataPostarii">
+        <th mat-header-cell *matHeaderCellDef>Data Postarii</th>
+        <td mat-cell *matCellDef="let job">{{ job.dataPostarii }}</td>
+    </ng-container>
 
-        <input formControlName="descriere" placeholder="Descriere">
-        @if(jobForm.get('descriere')?.touched && jobForm.get('descriere')?.invalid) {
-            <p>Completarea descrierii este obligatorie</p>
-        }
+    <ng-container matColumnDef="actiuni">
+        <th mat-header-cell *matHeaderCellDef>Actiuni</th>
+        <td mat-cell *matCellDef="let job">
+            <button (click)="stergeJob(job.id)" mat-raised-button>Delete</button>
+            <button (click)="arataFormular.set(false); jobDeEditat.set(job.id); jobEditat = {titlu: job.titlu, descriere: job.descriere, companie: job.companie, dataPostarii: job.dataPostarii}" mat-raised-button>Edit</button>
+            <button (click)="jobDeEditat.set(null); arataFormular.set(true)" mat-raised-button>+</button>
+        </td>
+    </ng-container>
 
-        <input formControlName="companie" placeholder="Companie">
-        @if(jobForm.get('companie')?.touched && jobForm.get('companie')?.invalid) {
-            <p>Completarea unei companii este obligatorie</p>
-        }
+    <tr mat-header-row *matHeaderRowDef="coloane"></tr>
+    <tr mat-row *matRowDef="let row; columns: coloane"></tr>
+</table>
 
-        <input formControlName="dataPostarii" placeholder="Data Postarii">
-        @if(jobForm.get('dataPostarii')?.touched && jobForm.get('dataPostarii')?.invalid) {
-            <p>Completarea datii este necesara.</p>
-        }
+@if(jobDeEditat()) {
+  <div class="form-container">
+    <mat-form-field>
+        <mat-label>Titlu</mat-label>
+        <input matInput [(ngModel)]="jobEditat.titlu">
+    </mat-form-field>
 
-        <input type="checkbox" formControlName="esteActiv" placeholder="Setati disponibilitatea">
-        @if(jobForm.get('esteActiv')?.touched && jobForm.get('esteActiv')?.invalid) {
-            <p>Completarea disponibilitatii este necesara.</p>
-        }
+    <mat-form-field>
+        <mat-label>Descriere</mat-label>
+        <input matInput [(ngModel)]="jobEditat.descriere">
+    </mat-form-field>
 
-        <button type="submit" [disabled]="jobForm.invalid">Adauga</button>
-        
-        @if(eroare) {
-            <p>{{ eroare }}</p>
-        }
-    </form>
+    <mat-form-field>
+        <mat-label>Companie</mat-label>
+        <input matInput [(ngModel)]="jobEditat.companie">
+    </mat-form-field>
 
+    <mat-form-field>
+        <mat-label>Data Postarii</mat-label>
+        <input matInput [(ngModel)]="jobEditat.dataPostarii"> 
+    </mat-form-field>
+    <button (click)="editeazaJob()" mat-raised-button>Salveaza</button>
+    <button (click)="jobDeEditat.set(null)" mat-raised-button>Anuleaza</button>
+  </div>
 }
+
+
+
+    @if(arataFormular()) {
+        <div class="form-container">
+        <form [formGroup]="jobForm" (ngSubmit)="creeazaJob()">
+            <mat-form-field>
+                <mat-label>Titlu</mat-label>
+                <input matInput formControlName="titlu">
+                @if(jobForm.get('titlu')?.touched && jobForm.get('titlu')?.invalid) {
+                    <p>Completarea titlului este obligatorie.</p>
+                }
+            </mat-form-field>
+    
+            <mat-form-field>
+                <mat-label>Descriere</mat-label>
+                <input matInput formControlName="descriere">
+                @if(jobForm.get('descriere')?.touched && jobForm.get('descriere')?.invalid) {
+                    <p>Completarea descrierii este obligatorie</p>
+                }
+            </mat-form-field>
+    
+            <mat-form-field>
+                <mat-label>Companie</mat-label>
+                <input matInput formControlName="companie">
+                @if(jobForm.get('companie')?.touched && jobForm.get('companie')?.invalid) {
+                    <p>Completarea unei companii este obligatorie</p>
+                }
+            </mat-form-field>
+    
+            <mat-form-field>
+                <mat-label>Data Postarii</mat-label>
+                <input matInput formControlName="dataPostarii">
+                @if(jobForm.get('dataPostarii')?.touched && jobForm.get('dataPostarii')?.invalid) {
+                    <p>Completarea datii este necesara.</p>
+                }
+            </mat-form-field>
+    
+            <label>Activ<input type="checkbox" formControlName="esteActiv"></label>
+            @if(jobForm.get('esteActiv')?.touched && jobForm.get('esteActiv')?.invalid) {
+                    <p>Completarea disponibilitatii este necesara.</p>
+                }
+            
+    
+            <button type="submit" [disabled]="jobForm.invalid" mat-raised-button>Adauga</button>
+    
+            @if(eroare) {
+                <p>{{ eroare }}</p>
+            }
+        </form>
+        </div>
+    }

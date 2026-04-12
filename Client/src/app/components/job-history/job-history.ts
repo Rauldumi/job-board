@@ -5,10 +5,11 @@ import { forkJoin } from 'rxjs';
 import { AuthService } from '../../services/auth';
 import { Job } from '../../models/job.model';
 import { RouterLink } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-job-history',
-  imports: [RouterLink],
+  imports: [RouterLink, MatCardModule],
   templateUrl: './job-history.html',
   styleUrl: './job-history.css',
 })

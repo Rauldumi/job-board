@@ -2,10 +2,14 @@ import { Component, OnInit, signal } from '@angular/core';
 import { JoburiService } from '../../services/joburi';
 import { Job } from '../../models/job.model';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-angajator-dashboard',
-  imports: [ReactiveFormsModule, FormsModule],
+  imports: [ReactiveFormsModule, FormsModule, MatTableModule, MatButtonModule, MatFormFieldModule, MatInputModule],
   templateUrl: './angajator-dashboard.html',
   styleUrl: './angajator-dashboard.css',
 })
@@ -17,6 +21,7 @@ export class AngajatorDashboard implements OnInit {
   jobEditat: Partial<Job> = {};
   arataFormular = signal(false);
   eroare: string = '';
+  coloane = ['titlu', 'companie', 'dataPostarii', 'actiuni']
   
   stergeJob(id: string) {
     this.joburiService.deleteJob(id).subscribe({

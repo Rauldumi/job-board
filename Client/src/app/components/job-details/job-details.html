@@ -1,13 +1,25 @@
 @if(job$ | async; as job) {
-   <div>
-        <h1>{{ job?.titlu }}</h1>
-        <p>{{ job?.companie }}</p>
-        <p>{{ job?.descriere }}</p>
-        <p>{{ job?.dataPostarii }}</p>
+   <div class="job-container">
+       <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                {{ job?.titlu }}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            {{ job?.companie }}
+        </mat-card-content>
+        <mat-card-content>
+            {{ job?.descriere }}
+        </mat-card-content>
+        <mat-card-content>
+            {{ job?.dataPostarii }}
+        </mat-card-content>
         @if(tipDeUser === 'candidat') {
-            <button (click)="aplicaJob()">Aplică</button>
+            <button (click)="aplicaJob()" mat-stroked-button>Aplică</button>
         }
-    </div> 
+       </mat-card>
+   </div>
 }
 
 @if(aplicatReusit()) {

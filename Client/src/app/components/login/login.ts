@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth';
 import { Router } from '@angular/router';
 import { FormGroup, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
